@@ -1,0 +1,12 @@
+{
+    "toast_title": "\"{entryName}\"Atualizado com sucesso!\"",
+    "card_description": "Você não tem acesso às configurações da organização.\nPor favor, entre em contato com o proprietário ou administrador da organização.",
+    "card_description.28": "Os ambientes permitem que você trabalhe com segurança em instâncias isoladas do seu projeto.\nEles ajudam você a fazer alterações em seu esquema e testar novas estruturas de conteúdo sem interromper seus sistemas de produção.",
+    "tooltip_title": "{n} mais respostas",
+    "card_title": "Esta ação não pode ser desfeita.",
+    "card_title.9": "SLA de disponibilidade de 97%",
+    "trial_days_left_title": "{n} faltam poucos dias",
+    "comment_placeholder": "Comente ou adicione outros com {'@'}",
+    "card_action": "Excluir '{name}'?",
+    "trial_days_left_description": "Com {'{0}'} o caminho será substituído dinamicamente usando partes do slug atual. Exemplos: {'{0}'}\/categorias\/, {'{0}'}\/{'{1}'}\/categorias\/"
+}
