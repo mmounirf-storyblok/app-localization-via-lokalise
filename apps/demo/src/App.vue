@@ -1,13 +1,61 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import en from '@storyblok/translations/en.json'
 import { availableLocales, setLocale } from './i18n'
 
 const { t, locale } = useI18n()
 
 const selected = ref(locale.value)
-const daysLeft = ref(1)
-const replyCount = ref(3)
+const count = ref(1)
+
+const source = en as Record<string, string>
+
+// A literal such as {'{0}'} must not be mistaken for a placeholder, so the
+// name has to start with a letter or underscore.
+const placeholderPattern = /\{([A-Za-z_][A-Za-z0-9_]*)\}/g
+
+// vue-i18n fills `n` from the count, so it needs no input of its own.
+const countPlaceholder = 'n'
+
+type Row = {
+  key: string
+  source: string
+  isPlural: boolean
+  names: string[]
+}
+
+const rows = computed<Row[]>(() =>
+  Object.keys(source)
+    .sort()
+    .map((key) => {
+      const value = source[key]
+      const names = [
+        ...new Set(
+          [...value.matchAll(placeholderPattern)].map((match) => match[1]),
+        ),
+      ].filter((name) => name !== countPlaceholder)
+      return { key, source: value, isPlural: value.includes('|'), names }
+    }),
+)
+
+const sampleValues = reactive<Record<string, string>>({
+  entryName: 'Home page',
+  name: 'Story',
+})
+
+function valuesFor(row: Row): Record<string, string> {
+  return Object.fromEntries(
+    row.names.map((name) => [name, sampleValues[name] ?? `<${name}>`]),
+  )
+}
+
+function render(row: Row): string {
+  if (row.isPlural) {
+    return t(row.key, valuesFor(row), count.value)
+  }
+  return t(row.key, valuesFor(row))
+}
 
 async function onLocaleChange(next: string): Promise<void> {
   await setLocale(next)
@@ -19,83 +67,53 @@ async function onLocaleChange(next: string): Promise<void> {
   <main>
     <header>
       <h1>App localization demo</h1>
-      <label>
-        Language
-        <select
-          :value="selected"
-          @change="onLocaleChange(($event.target as HTMLSelectElement).value)"
-        >
-          <option v-for="code in availableLocales" :key="code" :value="code">
-            {{ code }}
-          </option>
-        </select>
-      </label>
+      <div class="controls">
+        <label>
+          Count
+          <input v-model.number="count" type="number" min="0" />
+        </label>
+        <label>
+          Language
+          <select
+            :value="selected"
+            @change="onLocaleChange(($event.target as HTMLSelectElement).value)"
+          >
+            <option v-for="code in availableLocales" :key="code" :value="code">
+              {{ code }}
+            </option>
+          </select>
+        </label>
+      </div>
     </header>
+
+    <p class="hint">
+      {{ rows.length }} keys, read from
+      <code>packages/translations/v2/en.json</code>. Every key renders, with no
+      code change.
+    </p>
 
     <table>
       <thead>
         <tr>
-          <th>Case</th>
           <th>Key</th>
+          <th>Source</th>
           <th>Value</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Plain text</td>
-          <td><code>card_title</code></td>
-          <td>{{ t('card_title') }}</td>
-        </tr>
-        <tr>
-          <td>Named placeholder</td>
-          <td><code>toast_title</code></td>
-          <td>{{ t('toast_title', { entryName: 'Home page' }) }}</td>
-        </tr>
-        <tr>
+        <tr v-for="row in rows" :key="row.key">
           <td>
-            Plural, replies
-            <input v-model.number="replyCount" type="number" min="0" />
+            <code>{{ row.key }}</code>
+            <span v-if="row.isPlural" class="tag">plural</span>
+            <span v-for="name in row.names" :key="name" class="value-input">
+              <label>
+                {{ name }}
+                <input v-model="sampleValues[name]" type="text" />
+              </label>
+            </span>
           </td>
-          <td><code>tooltip_title</code></td>
-          <td>{{ t('tooltip_title', replyCount) }}</td>
-        </tr>
-        <tr>
-          <td>
-            Plural, trial days
-            <input v-model.number="daysLeft" type="number" min="0" />
-          </td>
-          <td><code>trial_days_left_title</code></td>
-          <td>{{ t('trial_days_left_title', daysLeft) }}</td>
-        </tr>
-        <tr>
-          <td>Literal at sign</td>
-          <td><code>comment_placeholder</code></td>
-          <td>{{ t('comment_placeholder') }}</td>
-        </tr>
-        <tr>
-          <td>Literal index placeholder</td>
-          <td><code>trial_days_left_description</code></td>
-          <td>{{ t('trial_days_left_description') }}</td>
-        </tr>
-        <tr>
-          <td>Apostrophe before a placeholder</td>
-          <td><code>card_action</code></td>
-          <td>{{ t('card_action', { name: 'Marketing' }) }}</td>
-        </tr>
-        <tr>
-          <td>Newline, two sentences</td>
-          <td><code>card_description</code></td>
-          <td class="preserve">{{ t('card_description') }}</td>
-        </tr>
-        <tr>
-          <td>Newline, long paragraph</td>
-          <td><code>card_description.28</code></td>
-          <td class="preserve">{{ t('card_description.28') }}</td>
-        </tr>
-        <tr>
-          <td>Percent sign</td>
-          <td><code>card_title.9</code></td>
-          <td>{{ t('card_title.9') }}</td>
+          <td class="preserve source">{{ row.source }}</td>
+          <td class="preserve">{{ render(row) }}</td>
         </tr>
       </tbody>
     </table>
@@ -110,7 +128,7 @@ body {
   background: #f7f8fa;
 }
 main {
-  max-width: 68rem;
+  max-width: 72rem;
   margin: 0 auto;
   padding: 2rem 1rem 4rem;
 }
@@ -118,11 +136,14 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1rem;
 }
 h1 {
   margin: 0;
   font-size: 1.25rem;
+}
+.controls {
+  display: flex;
+  gap: 1.25rem;
 }
 label {
   display: inline-flex;
@@ -139,7 +160,11 @@ input {
 }
 input {
   width: 4.5rem;
-  margin-top: 0.35rem;
+}
+.hint {
+  margin: 0.5rem 0 1rem;
+  color: #5a6b7b;
+  font-size: 0.8125rem;
 }
 table {
   width: 100%;
@@ -165,18 +190,42 @@ th {
   color: #5a6b7b;
 }
 td:first-child {
-  width: 14rem;
-  font-weight: 600;
+  width: 16rem;
 }
 td:nth-child(2) {
-  width: 20rem;
+  width: 28rem;
 }
 code {
-  color: #5a6b7b;
   font-size: 0.8125rem;
   overflow-wrap: anywhere;
 }
+.source {
+  color: #5a6b7b;
+}
+.tag {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.05rem 0.35rem;
+  background: #eaf3ff;
+  border-radius: 999px;
+  color: #1d63b3;
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
 .preserve {
   white-space: pre-wrap;
+}
+.value-input {
+  display: block;
+  margin-top: 0.4rem;
+}
+.value-input label {
+  font-size: 0.75rem;
+  color: #5a6b7b;
+}
+.value-input input {
+  width: 9rem;
+  padding: 0.15rem 0.35rem;
+  font-size: 0.8125rem;
 }
 </style>
