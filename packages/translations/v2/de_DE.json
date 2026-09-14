@@ -8,5 +8,6 @@
     "trial_days_left_title": "Noch {n} Tag|{n} verbleibende Tage",
     "comment_placeholder": "Kommentieren Sie oder fügen Sie weitere hinzu mit {'@'}",
     "card_action": "'{name}' löschen?",
-    "trial_days_left_description": "Mit {'{0}'} Der Pfad wird dynamisch mithilfe von Teilen des aktuellen Slugs ersetzt. Beispiele: {'{0}'} \/categories\/, {'{0}'} \/{'{1}'} \/categories\/"
+    "trial_days_left_description": "Mit {'{0}'} Der Pfad wird dynamisch mithilfe von Teilen des aktuellen Slugs ersetzt. Beispiele: {'{0}'} \/categories\/, {'{0}'} \/{'{1}'} \/categories\/",
+    "cta": "Delete {n} user?|Delete {n} users?"
 }

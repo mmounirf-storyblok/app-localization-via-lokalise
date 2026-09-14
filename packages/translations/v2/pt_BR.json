@@ -8,5 +8,6 @@
     "trial_days_left_title": "Falta {n} dia|Faltam {n} dias",
     "comment_placeholder": "Comente ou adicione outros com {'@'}",
     "card_action": "Excluir '{name}'?",
-    "trial_days_left_description": "Com {'{0}'} o caminho será substituído dinamicamente usando partes do slug atual. Exemplos: {'{0}'} \/categorias\/, {'{0}'} \/{'{1}'} \/categorias\/"
+    "trial_days_left_description": "Com {'{0}'} o caminho será substituído dinamicamente usando partes do slug atual. Exemplos: {'{0}'} \/categorias\/, {'{0}'} \/{'{1}'} \/categorias\/",
+    "cta": "Delete {n} user?|Delete {n} users?"
 }
