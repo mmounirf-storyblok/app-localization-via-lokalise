@@ -5,7 +5,7 @@
     "tooltip_title": "{n} weitere Antworten",
     "card_title": "Diese Handlung kann nicht rückgängig gemacht werden.",
     "card_title.9": "97 % Verfügbarkeitsgarantie",
-    "trial_days_left_title": "{n} verbleibende Tage",
+    "trial_days_left_title": "Noch {n} Tag|{n} verbleibende Tage",
     "comment_placeholder": "Kommentieren Sie oder fügen Sie weitere hinzu mit {'@'}",
     "card_action": "'{name}' löschen?",
     "trial_days_left_description": "Mit {'{0}'} Der Pfad wird dynamisch mithilfe von Teilen des aktuellen Slugs ersetzt. Beispiele: {'{0}'} \/categories\/, {'{0}'} \/{'{1}'} \/categories\/"
