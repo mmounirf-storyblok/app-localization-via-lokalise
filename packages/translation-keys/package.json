@@ -1,0 +1,18 @@
+{
+  "name": "@repo/translation-keys",
+  "description": "Extracts vue-i18n translation keys from the source code and writes packages/translations/v2",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "translation-keys": "./src/main.ts"
+  },
+  "dependencies": {
+    "@vue/compiler-dom": "3.5.13",
+    "@vue/compiler-sfc": "3.5.13",
+    "i18next-cli": "1.73.0",
+    "typescript": "6.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.1"
+  }
+}
