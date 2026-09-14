@@ -9,5 +9,7 @@
     "comment_placeholder": "Kommentieren Sie oder fügen Sie weitere hinzu mit {'@'}",
     "card_action": "'{name}' löschen?",
     "trial_days_left_description": "Mit {'{0}'} Der Pfad wird dynamisch mithilfe von Teilen des aktuellen Slugs ersetzt. Beispiele: {'{0}'} \/categories\/, {'{0}'} \/{'{1}'} \/categories\/",
-    "cta": "Delete {n} user?|Delete {n} users?"
+    "cta": "Delete {n} user?|Delete {n} users?",
+    "notification_msg": "Du hast 1 neue Nachricht|Sie haben {n} neue Nachrichten!",
+    "cta.92": "Klicken Sie hier, um es anzuzeigen"
 }

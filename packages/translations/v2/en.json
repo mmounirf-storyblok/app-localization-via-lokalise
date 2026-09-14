@@ -9,5 +9,7 @@
     "comment_placeholder": "Comment or add others with {'@'}",
     "card_action": "Delete '{name}'?",
     "trial_days_left_description": "With {'{0}'} the path will be replaced dynamically using parts of the current slug. Examples: {'{0}'} \/categories\/, {'{0}'} \/{'{1}'} \/categories\/",
-    "cta": "Delete {n} user?|Delete {n} users?"
+    "cta": "Delete {n} user?|Delete {n} users?",
+    "notification_msg": "you have 1 new message|you have new {n} messages!",
+    "cta.92": "click here to view"
 }
