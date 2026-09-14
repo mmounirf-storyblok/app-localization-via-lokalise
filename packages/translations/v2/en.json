@@ -8,5 +8,6 @@
     "trial_days_left_title": "{n} day left|{n} days left",
     "comment_placeholder": "Comment or add others with {'@'}",
     "card_action": "Delete '{name}'?",
-    "trial_days_left_description": "With {'{0}'} the path will be replaced dynamically using parts of the current slug. Examples: {'{0}'} \/categories\/, {'{0}'} \/{'{1}'} \/categories\/"
+    "trial_days_left_description": "With {'{0}'} the path will be replaced dynamically using parts of the current slug. Examples: {'{0}'} \/categories\/, {'{0}'} \/{'{1}'} \/categories\/",
+    "cta": "Delete {n} user?|Delete {n} users?"
 }
