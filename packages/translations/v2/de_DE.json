@@ -2,11 +2,12 @@
     "toast_title": "\"{entryName}„Erfolgreich aktualisiert!“",
     "card_description": "Sie haben keinen Zugriff auf die Organisationseinstellungen.\nBitte kontaktieren Sie den Inhaber oder Administrator der Organisation.",
     "card_description.28": "Umgebungen ermöglichen es Ihnen, sicher an isolierten Instanzen Ihres Projekts zu arbeiten.\nSie helfen Ihnen dabei, Änderungen an Ihrem Schema vorzunehmen und neue Inhaltsstrukturen zu testen, ohne Ihre Produktionssysteme zu beeinträchtigen.",
-    "tooltip_title": "{n} weitere Antworten",
+    "tooltip_title": "Noch 1 Antwort|{n} weitere Antworten",
     "card_title": "Diese Handlung kann nicht rückgängig gemacht werden.",
     "card_title.9": "97 % Verfügbarkeitsgarantie",
     "trial_days_left_title": "Noch {n} Tag|{n} verbleibende Tage",
     "comment_placeholder": "Kommentieren Sie oder fügen Sie weitere hinzu mit {'@'}",
     "card_action": "'{name}' löschen?",
-    "trial_days_left_description": "Mit {'{0}'} Der Pfad wird dynamisch mithilfe von Teilen des aktuellen Slugs ersetzt. Beispiele: {'{0}'} \/categories\/, {'{0}'} \/{'{1}'} \/categories\/"
+    "trial_days_left_description": "Mit {'{0}'} Der Pfad wird dynamisch mithilfe von Teilen des aktuellen Slugs ersetzt. Beispiele: {'{0}'} \/categories\/, {'{0}'} \/{'{1}'} \/categories\/",
+    "cta": "Delete {n} user?|Delete {n} users?"
 }

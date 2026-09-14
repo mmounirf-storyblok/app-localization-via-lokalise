@@ -2,11 +2,12 @@
     "toast_title": "\"{entryName}\" updated successfully!",
     "card_description": "You don't have access to the organization settings.\nPlease contact the organization owner or admin.",
     "card_description.28": "Environments allow you to safely work on isolated instances of your project.\nThey help you make changes to your schema and test new content structures without breaking your production systems",
-    "tooltip_title": "{n} more replies",
+    "tooltip_title": "{n} more reply|{n} more replies",
     "card_title": "This action cannot be undone.",
     "card_title.9": "97% Uptime SLA",
     "trial_days_left_title": "{n} day left|{n} days left",
     "comment_placeholder": "Comment or add others with {'@'}",
     "card_action": "Delete '{name}'?",
-    "trial_days_left_description": "With {'{0}'} the path will be replaced dynamically using parts of the current slug. Examples: {'{0}'} \/categories\/, {'{0}'} \/{'{1}'} \/categories\/"
+    "trial_days_left_description": "With {'{0}'} the path will be replaced dynamically using parts of the current slug. Examples: {'{0}'} \/categories\/, {'{0}'} \/{'{1}'} \/categories\/",
+    "cta": "Delete {n} user?|Delete {n} users?"
 }
