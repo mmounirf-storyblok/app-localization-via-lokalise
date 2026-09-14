@@ -45,5 +45,7 @@ export async function setLocale(locale: string): Promise<void> {
     loaded.add(locale)
   }
   document.documentElement.setAttribute('lang', locale)
-  i18n.global.locale.value = locale
+  // `mode: 'composition'` alone leaves the Legacy API active, so `locale`
+  // is a plain string here, exactly as in storyfront's translate.ts.
+  i18n.global.locale = locale
 }

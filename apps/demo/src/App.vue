@@ -43,84 +43,59 @@ async function onLocaleChange(next: string): Promise<void> {
       <tbody>
         <tr>
           <td>Plain text</td>
-          <td><code>This action cannot be undone.</code></td>
-          <td>{{ t('This action cannot be undone.') }}</td>
+          <td><code>card_title</code></td>
+          <td>{{ t('card_title') }}</td>
         </tr>
         <tr>
           <td>Named placeholder</td>
-          <td><code>"{entryName}" updated successfully!</code></td>
-          <td>
-            {{
-              t('"{entryName}" updated successfully!', {
-                entryName: 'Home page',
-              })
-            }}
-          </td>
+          <td><code>toast_title</code></td>
+          <td>{{ t('toast_title', { entryName: 'Home page' }) }}</td>
         </tr>
         <tr>
           <td>
-            Plural, two parts
+            Plural, replies
             <input v-model.number="replyCount" type="number" min="0" />
           </td>
-          <td><code>+{n} more reply | +{n} more replies</code></td>
-          <td>{{ t('+{n} more reply | +{n} more replies', replyCount) }}</td>
+          <td><code>tooltip_title</code></td>
+          <td>{{ t('tooltip_title', replyCount) }}</td>
         </tr>
         <tr>
           <td>
-            Plural, three parts
+            Plural, trial days
             <input v-model.number="daysLeft" type="number" min="0" />
           </td>
-          <td><code>0 days left | 1 day left | {n} days left</code></td>
-          <td>{{ t('0 days left | 1 day left | {n} days left', daysLeft) }}</td>
+          <td><code>trial_days_left_title</code></td>
+          <td>{{ t('trial_days_left_title', daysLeft) }}</td>
         </tr>
         <tr>
           <td>Literal at sign</td>
-          <td><code>Comment or add others with {'@'}</code></td>
-          <td>{{ t(`Comment or add others with {'@'}`) }}</td>
+          <td><code>comment_placeholder</code></td>
+          <td>{{ t('comment_placeholder') }}</td>
         </tr>
         <tr>
           <td>Literal index placeholder</td>
-          <td><code>With {'{0}'} the path will be replaced ...</code></td>
-          <td>
-            {{
-              t(
-                `With {'{0}'} the path will be replaced dynamically using parts of the current slug. Examples: {'{0}'}/categories/, {'{0}'}/{'{1}'}/categories/`,
-              )
-            }}
-          </td>
+          <td><code>trial_days_left_description</code></td>
+          <td>{{ t('trial_days_left_description') }}</td>
         </tr>
         <tr>
           <td>Apostrophe before a placeholder</td>
-          <td><code>Delete '{name}'?</code></td>
-          <td>{{ t(`Delete '{name}'?`, { name: 'Marketing' }) }}</td>
+          <td><code>card_action</code></td>
+          <td>{{ t('card_action', { name: 'Marketing' }) }}</td>
         </tr>
         <tr>
-          <td>Newline</td>
-          <td><code>Environments allow you to safely work ...</code></td>
-          <td class="preserve">
-            {{
-              t(
-                'Environments allow you to safely work on isolated instances of your project.\n          They help you make changes to your schema and test new content structures without breaking your production systems',
-              )
-            }}
-          </td>
+          <td>Newline, two sentences</td>
+          <td><code>card_description</code></td>
+          <td class="preserve">{{ t('card_description') }}</td>
         </tr>
         <tr>
-          <td>Markup</td>
-          <td><code>You don't have access ... &lt;br/&gt; ...</code></td>
-          <!-- v-html is required because the source string carries a <br/> tag. -->
-          <td
-            v-html="
-              t(
-                `You don't have access to the organization settings. <br/> Please contact the organization owner or admin.`,
-              )
-            "
-          />
+          <td>Newline, long paragraph</td>
+          <td><code>card_description.28</code></td>
+          <td class="preserve">{{ t('card_description.28') }}</td>
         </tr>
         <tr>
           <td>Percent sign</td>
-          <td><code>97% Uptime SLA</code></td>
-          <td>{{ t('97% Uptime SLA') }}</td>
+          <td><code>card_title.9</code></td>
+          <td>{{ t('card_title.9') }}</td>
         </tr>
       </tbody>
     </table>
@@ -194,7 +169,7 @@ td:first-child {
   font-weight: 600;
 }
 td:nth-child(2) {
-  width: 26rem;
+  width: 20rem;
 }
 code {
   color: #5a6b7b;
